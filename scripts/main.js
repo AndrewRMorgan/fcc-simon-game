@@ -184,7 +184,7 @@ function checkArr() {
       console.log('function: checkArr - option 1: fail')
       fail()
       return
-    } else if (round === 3) {
+    } else if (round === 20) {
       console.log('function: checkArr - option 1: win')
       win()
       return
@@ -250,7 +250,11 @@ function reset() {
 }
 
 function win() {
-  alert("You Won!")
   defaults()
   document.getElementById('count').innerHTML = "--"
+  setTimeout(winAlert, 500)
+}
+
+function winAlert() {
+  alert("You Won!")
 }
