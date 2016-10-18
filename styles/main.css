@@ -1,0 +1,197 @@
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+.mainBox {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  border-radius: 100%;
+  overflow: hidden;
+  margin: 75px auto 0 auto;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.1); }
+
+.t-l {
+  width: 300px;
+  height: 300px;
+  border: 30px solid #333333;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #b30000;
+  border-top-left-radius: 100%;
+  border-right: 15px solid #333333;
+  border-bottom: 15px solid #333333; }
+
+.t-r {
+  width: 300px;
+  height: 300px;
+  border: 30px solid #333333;
+  position: absolute;
+  top: 0;
+  left: 300px;
+  background-color: #004d99;
+  border-top-right-radius: 100%;
+  border-left: 15px solid #333333;
+  border-bottom: 15px solid #333333; }
+
+.b-l {
+  width: 300px;
+  height: 300px;
+  border: 30px solid #333333;
+  position: absolute;
+  top: 300px;
+  left: 0;
+  background-color: #248f24;
+  border-bottom-left-radius: 100%;
+  border-top: 15px solid #333333;
+  border-right: 15px solid #333333; }
+
+.b-r {
+  width: 300px;
+  height: 300px;
+  border: 30px solid #333333;
+  position: absolute;
+  top: 300px;
+  left: 300px;
+  background-color: #e6c700;
+  border-bottom-right-radius: 100%;
+  border-top: 15px solid #333333;
+  border-left: 15px solid #333333; }
+
+.optionBox {
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  border: 20px solid #333333;
+  background-color: #FFFFFF;
+  z-index: 2;
+  border-radius: 100%; }
+
+.brand {
+  position: absolute;
+  top: 20px;
+  left: 50px;
+  font-size: 4em;
+  font-family: 'Lobster', cursive; }
+
+.count {
+  position: absolute;
+  top: 100px;
+  left: 35px;
+  width: 60px;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #000000;
+  background-color: #660000;
+  color: #ff0000;
+  font-size: 3em;
+  line-height: 45px;
+  text-align: center;
+  font-family: 'VT323', monospace; }
+
+.start {
+  position: absolute;
+  top: 116px;
+  left: 120px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000000;
+  background-color: red;
+  border-radius: 100%; }
+
+.strict {
+  position: absolute;
+  top: 116px;
+  left: 190px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #000000;
+  background-color: yellow;
+  border-radius: 100%; }
+
+.led {
+  position: absolute;
+  top: 97px;
+  left: 199px;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #000000;
+  background-color: #cc0000;
+  border-radius: 100%; }
+
+.countLabel {
+  position: absolute;
+  top: 155px;
+  left: 43px;
+  width: 60px;
+  height: 50px;
+  font-family: "Oswald", sans-serif; }
+
+.startLabel {
+  position: absolute;
+  top: 155px;
+  left: 115px;
+  width: 60px;
+  height: 50px;
+  font-family: "Oswald", sans-serif; }
+
+.strictLabel {
+  position: absolute;
+  top: 155px;
+  left: 180px;
+  width: 60px;
+  height: 50px;
+  font-family: "Oswald", sans-serif; }
+
+.offLabel {
+  position: absolute;
+  top: 187px;
+  left: 69px;
+  font-family: "Oswald", sans-serif; }
+
+.onOff {
+  position: absolute;
+  top: 185px;
+  left: 100px;
+  width: 70px;
+  height: 30px;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  background-color: #000000; }
+
+.onLabel {
+  position: absolute;
+  top: 187px;
+  left: 179px;
+  font-family: "Oswald", sans-serif; }
+
+.switch {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 30px;
+  height: 94%;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: left 0.5s; }
+
+.pointer:hover {
+  cursor: pointer; }
+
+.about {
+  display: block;
+  margin-top: 50px;
+  font-size: 1em;
+  font-family: 'Lobster', cursive;
+  text-align: center; }
+
+.about a {
+  text-decoration: none;
+  color: inherit; }
+
+/*# sourceMappingURL=main.css.map */
