@@ -7,28 +7,25 @@ let i
 let gameMode = "normal"
 let power = "off"
 let turn = "ai"
+let ready = true
 
 document.getElementById("1").addEventListener('click', function() {
-  if (turn === "human") {
-    console.log("listen, userPick1")
+  if (turn === "human" && ready === true) {
     userPick(1)
   }
 })
 document.getElementById("2").addEventListener('click', function() {
-  if (turn === "human") {
-    console.log("listen, userPick2")
+  if (turn === "human" && ready === true) {
     userPick(2)
   }
 })
 document.getElementById("3").addEventListener('click', function() {
-  if (turn === "human") {
-    console.log("listen, userPick3")
+  if (turn === "human" && ready === true) {
     userPick(3)
   }
 })
 document.getElementById("4").addEventListener('click', function() {
-  if (turn === "human") {
-    console.log("listen, userPick4")
+  if (turn === "human" && ready === true) {
     userPick(4)
   }
 })
@@ -61,44 +58,53 @@ function defaults() {
 }
 
 function on() {
+  power = "on"
   document.getElementById('switch').style.left = "37px"
   document.getElementById('count').innerHTML = "--"
-  power = "on"
-};
+}
 
 function off() {
   power = "off"
   defaults()
+  pauseSound()
+  resetSound()
+  originalColor()
   document.getElementById('switch').style.left = "1px"
   document.getElementById('count').innerHTML = ""
 }
 
 function strict() {
-  if (power === 'on') {
-    console.log('strict')
-    if (gameMode === "normal") {
-      gameMode = "strict"
-      document.getElementById('led').style.backgroundColor = "#ff1a1a"
-    } else if (gameMode === "strict") {
-      gameMode = "normal"
-      document.getElementById('led').style.backgroundColor = "#cc0000"
-    }
+  if (power === "off") {
+    return
+  }
+  if (gameMode === "normal") {
+    gameMode = "strict"
+    document.getElementById('led').style.backgroundColor = "#ff1a1a"
+  } else if (gameMode === "strict") {
+    gameMode = "normal"
+    document.getElementById('led').style.backgroundColor = "#cc0000"
   }
 }
 
 function start() {
-  console.log("start")
+  if (power === "off") {
+    return
+  }
   randomNum()
 }
 
 function randomNum() {
-  console.log('function: random')
+  if (power === "off") {
+    return
+  }
   let num = Math.floor(Math.random() * (4 - 1 + 1)) + 1
   push("ai", num)
 }
 
 function push(user, num) {
-  console.log('push', user, num)
+  if (power === "off") {
+    return
+  }
   if (user === "ai") {
     humanClickCount = 0
     round++
@@ -112,11 +118,16 @@ function push(user, num) {
 }
 
 function readArr() {
+  if (power === "off") {
+    return
+  }
   setTimeout(click, 1200, "ai", aiArr[aiClickCount])
 }
 
 function click(user, num) {
-  console.log('function: click - user: ' + user + ' - Num: ' + num)
+  if (power === "off") {
+    return
+  }
   if (num === 1) {
     document.getElementById('1').style.backgroundColor = "#ff1a1a"
     document.getElementById('sound1').play()
@@ -134,12 +145,15 @@ function click(user, num) {
     document.getElementById('sound4').play()
     setTimeout(changeBack, 500, 4)
   }
+  ready = false
   increaseCount(user)
   next(user)
 }
 
 function increaseCount(user) {
-  console.log('function: increaseCount - user: ' + user)
+  if (power === "off") {
+    return
+  }
   if (user === 'ai') {
     aiClickCount++
   } else if (user === 'human') {
@@ -148,54 +162,51 @@ function increaseCount(user) {
 }
 
 function next(user) {
-  console.log('function: next - user: ' + user)
-    if (user === 'ai' && aiClickCount !== round) {
-      console.log("function: next - option 1 - aiClickCount: " + aiClickCount + ' - round: ' + round)
-      turn = 'ai'
-      readArr();
-    } else if (user === 'ai' && aiClickCount === round) {
-      console.log("function: next - option 2 - aiClickCount: " + aiClickCount)
-      turn = "human"
-    } else if (user === "human" && humanClickCount !== round) {
-      console.log('function: next - option 3: - humanClickCount: ' + humanClickCount)
-      turn = "human"
-    } else if (user === "human" && humanClickCount === round) {
-      console.log('function: next - option 4: - humanClickCount: ' + humanClickCount)
-      turn = "ai"
-      checkArr();
-    }
+  if (power === "off") {
+    return
+  }
+  if (user === 'ai' && aiClickCount !== round) {
+    turn = 'ai'
+    readArr();
+  } else if (user === 'ai' && aiClickCount === round) {
+    turn = "human"
+  } else if (user === "human" && humanClickCount !== round) {
+    turn = "human"
+  } else if (user === "human" && humanClickCount === round) {
+    turn = "ai"
+    checkArr();
+  }
 }
 
 function userPick(num) {
+  if (power === "off") {
+    return
+  }
   push("human", num)
   click("human", num)
 }
 
 function checkArr() {
-  if (aiArr.length !== humanArr.length) {
-    console.log('aiArr Length: ' + aiArr.length + ' - humanArr Length: ' + humanArr.length)
+  if (aiArr.length !== humanArr.length || power === "off") {
     return
   }
-
-  console.log('function: checkArr');
   for (i = 0; i < aiArr.length; i++) {
-    console.log("function: checkArr - i: " + i)
     if (aiArr[i] !== humanArr[i]) {
-      console.log('function: checkArr - option 1: fail')
       fail()
       return
     } else if (round === 20) {
-      console.log('function: checkArr - option 1: win')
       win()
       return
     }
   }
-  console.log('function: checkArr - randomNum')
   humanArr = []
   randomNum()
 }
 
 function changeBack(num) {
+  if (power === "off") {
+    return
+  }
   if (num === 1) {
     document.getElementById('1').style.backgroundColor = "#cc0000"
   } else if (num === 2) {
@@ -205,6 +216,28 @@ function changeBack(num) {
   } else if (num === 4) {
     document.getElementById('4').style.backgroundColor = "#ffdf00"
   }
+  ready = true
+}
+
+function originalColor() {
+  document.getElementById('1').style.backgroundColor = "#cc0000"
+  document.getElementById('2').style.backgroundColor = "#0059b3"
+  document.getElementById('3').style.backgroundColor = "#29a329"
+  document.getElementById('4').style.backgroundColor = "#ffdf00"
+}
+
+function pauseSound() {
+  document.getElementById('sound1').pause()
+  document.getElementById('sound2').pause()
+  document.getElementById('sound3').pause()
+  document.getElementById('sound4').pause()
+}
+
+function resetSound() {
+  document.getElementById('sound1').currentTime = 0
+  document.getElementById('sound2').currentTime = 0
+  document.getElementById('sound3').currentTime = 0
+  document.getElementById('sound4').currentTime = 0
 }
 
 function changeCount() {
@@ -227,7 +260,6 @@ function fail() {
 }
 
 function restart() {
-  console.log('function: restart')
   setTimeout(blink, 300, "on")
   setTimeout(blink, 600, "off")
   setTimeout(blink, 900, "on")
